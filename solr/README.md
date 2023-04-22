@@ -10,5 +10,5 @@ Diagram:
 How to use it:\
 	1. INSTALL ROLES: ansible-galaxy install -r requirements.yml\
 	2. INSTALL SOLR ON DEPLOYMENT MACHINE USING ROLES: ansible-playbook setup.yml -K\
-	3. DEPLOY SOLR IMAGE WITH DOCKER: ansible-playbook docker.yml -K\
+	3. DEPLOY SOLR IMAGE WITH DOCKER: ansible-playbook docker.yml -K
 

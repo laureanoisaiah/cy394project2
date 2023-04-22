@@ -1,0 +1,35 @@
+---
+- hosts: all
+  become: true
+
+  vars:
+    default_container_name: solrcontainer
+    default_container_image: hub.eecs.net/dockerhub-proxy/library/solr
+  tasks:
+    - name: Install Docker
+      community.general.snap:
+        name: 
+          - docker
+    - name: Install required System Packages
+      apt:
+        pkg:
+          - apt-transport-https
+          - ca-certificates
+          - software-properties-common
+          - python3-pip
+          - virtualenv
+          - python3-setuptools
+        state: latest
+        update_cache: true
+
+    - name: Install docker module for python
+      pip:
+        name: docker
+
+    - name: Install and start container
+      community.docker.docker_container:
+        name: "{{ default_container_name }}"
+        image: "{{ default_container_image }}"
+        state: started
+        ports: "8090:80"
+
